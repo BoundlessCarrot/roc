@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        zig: [0.11.0, 0.10.0, master ]
+        zig: [0.11.0, master ]
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     name: Zig ${{ matrix.zig }} on ${{ matrix.os }}
@@ -18,3 +18,7 @@ jobs:
         with:
           zig-version: ${{ matrix.zig }}
       - run: zig build -Doptimize=ReleaseFast
+      - name: GH Release
+        # You may pin to the exact commit or the version.
+        # uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
+        uses: softprops/action-gh-release@v0.1.15
